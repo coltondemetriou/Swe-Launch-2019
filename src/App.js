@@ -1,24 +1,35 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Restaurants from "./restaurants.js";
+import Bars from "./bars.js";
+import styled from "styled-components";
+import Searchbar from "./searchbar.js";
+
 
 function App() {
+  const Style = styled.h1`
+    font-size: 1.5em;
+    text-align: center;
+    color: tomato;
+  `;
+  const Style2 = styled.h1`
+font-size: 1em;
+text-align: left;
+background: papayawhip;
+`; 
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <Style>
+    <h1>
+      Charlottesville Restaurants and Bars
+    </h1>
+    </Style>
+    <Style2>
+      <Restaurants />
+      <Bars />
+      </Style2>
     </div>
   );
 }
