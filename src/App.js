@@ -1,36 +1,21 @@
 import React from 'react';
 import './App.css';
-import Restaurants from "./restaurants.js";
-import Bars from "./bars.js";
-import styled from "styled-components";
-import Searchbar from "./searchbar.js";
+import Places from "./Places.js";
+import "./style.css";
+import "antd/dist/antd.css";
+
 
 
 function App() {
-  const Style = styled.h1`
-    font-size: 1.5em;
-    text-align: center;
-    color: tomato;
-  `;
-  const Style2 = styled.h1`
-font-size: 1em;
-text-align: left;
-background: papayawhip;
-`; 
-
 
   return (
-    <div className="App">
-    <Style>
-    <h1>
-      Charlottesville Restaurants and Bars
-    </h1>
-    </Style>
-    <Style2>
-      <Restaurants />
-      <Bars />
-      </Style2>
-    </div>
+    //<div className="App">
+    <div className= "Backg">
+    <div className= "Title">
+      <h1>Charlottesville Food Search </h1> </ div>
+      <Places />
+      </div>
+    //</div>
   );
 }
 
