@@ -1,47 +1,61 @@
 import React from 'react';
-import './App.css';
 import axios from 'axios';
-import styled from "styled-components";
+import LeafletApp from './LeafletMap.js';
+import "./style.css";
+import LeafletMap from './LeafletMap.js';
 
-const API_KEY = process.env.REACT_APP_API_KEY;
+const API_KEY = process.env.REACT_APP_API_KEY
 
-const mapResults = bars => {
-    return bars.map(bar => 
-    <li> {bar.name} {bar.rating} {bar.price_level}</li>);
-}
-export default class Bars extends React.Component{ 
-
+export default class Bars extends React.Component{
     constructor(props){
         super(props);
         this.state = {
             bars : [],
+            restaurants : [],
+            r : [],
         };
     }
-    async componentDidMount(){
-        let url = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?query=bars+in+Charlottesville&key="
+    componentWillMount(){
+        let url = "https://cors-anywhere-hclaunch.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?query=bars+in+Charlottesville&key="
         + API_KEY;
         axios.get(url)
         .then(res=>{
             const data = res.data.results;
-            const openb = [];
+            const bars = [];
             for(let i=0; i<data.length; i++){
                 if(data[i].opening_hours.open_now == true){
-                    openb.push(data[i]);
+                    bars.push(data[i]);
                 }
             }
             this.setState({
-                bars : openb
+                bars : bars,
+                restaurants: this.props.restaurants
+
             });
+            console.log(this.state.restaurants);
            });
     }
+
     
     render(){
+        if (this.state.restaurants.length != 0 && this.state.bars.length != 0) {
+            var callMap = <LeafletMap restaurants={ this.state.restaurants } bars={ this.state.bars } />
+            var Search = <searchbar restaurants={ this.state.restaurants } bars={ this.state.bars } />
+          } else {
+            var callMap = null;
+            var Search = null;
+          }
         return (
-            <div>
-                <h1>
-                    Bars
-                </h1>
-                {this.state.bars!==null && mapResults(this.state.bars)}
+            <div className = "App">
+            <div className="SubTitle"> Bars </div>
+            <div className= "Style">
+                    {this.state.bars.map(bar=>(
+                        <li><div className="Name">{bar.name}</div> <div className="Space">Price: {bar.price_level}</div> <div className="Space">
+                        Rating: {bar.rating}</div></li>   
+                    ))}  
+                    </div>  
+                    {callMap}
+                    {Search}
             </div>
           );
     }

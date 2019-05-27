@@ -1,0 +1,42 @@
+
+.Style {
+    color: tomato;
+}
+
+.Backg{
+    background: papayawhip;
+}
+
+.Title{
+    font-style: italic;
+    color: tomato;
+    text-align: center;
+}
+
+.SubTitle{
+    font-family: helvetica;
+    font-size: 1.2em;
+    font-weight: 600;
+    text-align: center;
+    color: tomato;
+}
+
+.Space{
+    padding: 5px;
+    font-size: .9em;
+    justify-content: space-evenly;
+    flex-direction: row;
+}
+
+.Name{
+    text-transform: uppercase;
+}
+
+.Map{
+    background: papayawhip;
+    color: tomato;
+    font-style: italic;
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
